@@ -2232,15 +2232,15 @@ def menu():
     # ]
 
     # POP Leads to more than 4 consecutive disks #
-    # board = [
-    #     [0,0,0,0,0,0,0],
-    #     [0,0,0,0,0,0,0],
-    #     [0,0,0,0,0,0,0],
-    #     [0,0,0,0,0,0,0],
-    #     [0,0,0,0,0,0,0],
-    #     [0,0,0,2,0,0,0],
-    #     [0,2,2,1,2,2,0]
-    # ]
+    board = [
+        [0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0],
+        [0,0,0,2,0,0,0],
+        [0,2,2,1,2,2,0]
+    ]
 
     # BOTH PLAYERS HAVE 4 consecutive disks after doing pop, player who does this move loses #
     # board = [
@@ -2289,14 +2289,14 @@ def menu():
     # ]
 
     # # check if bot will add to empty column (SHOULD WORK FOR EASY, MEDIUM, HARD) #
-    board = [
-        [0, 0, 2, 3, 1, 1, 2],
-        [1, 1, 3, 2, 2, 1, 1],
-        [2, 1, 2, 3, 1, 2, 3],
-        [2, 3, 3, 1, 3, 1, 1],
-        [1, 1, 3, 3, 2, 1, 2],
-        [2, 1, 3, 1, 1, 1, 3]
-    ]
+    # board = [
+    #     [0, 0, 2, 3, 1, 1, 2],
+    #     [1, 1, 3, 2, 2, 1, 1],
+    #     [2, 1, 2, 3, 1, 2, 3],
+    #     [2, 3, 3, 1, 3, 1, 1],
+    #     [1, 1, 3, 3, 2, 1, 2],
+    #     [2, 1, 3, 1, 1, 1, 3]
+    # ]
 
     # # check if bot will pop column when board is full (SHOULD WORK FOR EASY, MEDIUM, HARD) #
     # board = [
