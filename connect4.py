@@ -17,6 +17,8 @@ import time
     of the board.
 '''
 
+invalid_cols = [] # this will store the cols which have been filled up and have to be popped
+
 def one_dim_to_two_dim(board):
     # convert 1D list to 2D list #
     output_list = []
@@ -42,25 +44,41 @@ def two_dim_to_one_dim(board):
 
 def check_move(board, turn, col, pop):
     # implement your function here'
-    
+
+    # Convert the board from one-dimensional to two-dimensional
     board = one_dim_to_two_dim(board)
-
-    if (pop == False):
-        if (col >= 0 and col <= len(board[0])-1): # col <= board's width
-                for i in range(len(board)-1, -1 , -1): # iterating over board's height
-                    if (board[i][col] == 0):
-                        return True
-
-    elif (pop == True):
-        bottom_most_row = len(board)-1
-        if (turn == 1):
-            if (board[bottom_most_row][col] == 1):
-                return True
-        else: # turn is 2
-            if (board[bottom_most_row][col] == 2):
-                return True
-
-    return False
+    
+    # Check if column index is valid
+    if col < 0 or col >= len(board[0]):
+        print("The column you selected is outside of the board.")
+        return False  # Invalid column index
+    
+    if not pop:  # For a drop move
+        # Check if the column is full
+        is_full = all(board[row][col] != 0 for row in range(len(board)))
+        if is_full:
+            invalid_cols.append(col)
+            print("The column you selected is full, please try another column.")
+            return False  # Cannot drop into a full column
+        
+        # Check for a valid empty spot in the column
+        for i in range(len(board) - 1, -1, -1):  # Iterate from bottom to top
+            if board[i][col] == 0:
+                return True  # Valid move if an empty spot is found
+    
+    elif pop:  # For a pop move
+        # The bottom-most row index
+        bottom_most_row = len(board) - 1
+        # Check if the bottom-most piece matches the player's turn
+        if (turn == 1 and board[bottom_most_row][col] == 1) or \
+           (turn == 2 and board[bottom_most_row][col] == 2):
+            return True  # Valid move if the bottom-most piece matches the turn
+        else:
+            print("No Disc To Be Popped, Please Try Another Column!")
+            return False
+    
+    print("No valid moves found.")
+    return False  # If no valid move is found
 
 def apply_move(board, turn, col, pop):
     # implement your function here
@@ -255,6 +273,7 @@ def computer_move(board, turn, level):
     # print("board's length:", len(board))
 
     if (level == 1): # random moves
+
         random_pop_list = [True, False]
         while True:
             if (len(board) > num_rows_2d_list): # if board is in 1D
@@ -263,10 +282,18 @@ def computer_move(board, turn, level):
             random_column = random.randint(0, len(board[0])-1)
             random_pop = random_pop_list[random.randint(0,1)]
 
+            if random_pop:  # Handle the case where random_pop is True
+                if invalid_cols:  # Ensure there are columns available to pop
+                    random_column = random.choice(invalid_cols)  # Pick a column from invalid_cols
+                    invalid_cols.remove(random_column)  # Remove the picked column from invalid_cols
+                else:
+                    continue  # If no columns are in invalid_cols, try again
+
             board = two_dim_to_one_dim(board) # for input to check_move()
             if (check_move(board, turn, random_column, random_pop) == True):
                 print("COMPUTER DOES RANDOM MOVE")
-                return (random_column, False) # returns col, pop (Boolean)
+                return (random_column, random_pop) # returns col, pop (Boolean)
+            
     
     elif (level == 2): # Medium
 
@@ -274,8 +301,7 @@ def computer_move(board, turn, level):
 
         computer_disc_locs = []
         user_disc_locs = []
-
-        invalid_cols = [] # this will store the cols which have been filled up and have to be popped
+        
 
         '''
             add computer_disc_locs and user_disc_locs depending on which player computer is
@@ -1017,10 +1043,17 @@ def computer_move(board, turn, level):
             random_column = random.randint(0, len(board[0])-1)
             random_pop = random_pop_list[random.randint(0,1)]
 
+            if random_pop:  # Handle the case where random_pop is True
+                if invalid_cols:  # Ensure there are columns available to pop
+                    random_column = random.choice(invalid_cols)  # Pick a column from invalid_cols
+                    invalid_cols.remove(random_column)  # Remove the picked column from invalid_cols
+                else:
+                    continue  # If no columns are in invalid_cols, try again
+
             board = two_dim_to_one_dim(board) # for input to check_move()
             if (check_move(board, turn, random_column, random_pop) == True):
                 print("COMPUTER DOES RANDOM MOVE")
-                return (random_column, False) # returns col, pop (Boolean)
+                return (random_column, random_pop) # returns col, pop (Boolean)
 
     elif (level == 3): # HARD
 
@@ -1028,8 +1061,6 @@ def computer_move(board, turn, level):
 
         computer_disc_locs = []
         user_disc_locs = []
-
-        invalid_cols = [] # this will store the cols which have been filled up and have to be popped
 
         if (turn == 1): # computer is player 1
             for row_idx, row in enumerate(board):
@@ -2008,6 +2039,28 @@ def computer_move(board, turn, level):
                         print("COMPUTER SETTING UP VERTICAL WIN")
                         return (computer_high_score_col_idx, False)
                 # END OF 2 SCORE #
+
+
+        ## END OF CHECK USER ##
+        random_pop_list = [True, False]
+        while True:
+            if (len(board) > num_rows_2d_list): # if board is in 1D
+                board = one_dim_to_two_dim(board) # change board to 2D for len(board[0])-1 to work
+
+            random_column = random.randint(0, len(board[0])-1)
+            random_pop = random_pop_list[random.randint(0,1)]
+
+            if random_pop:  # Handle the case where random_pop is True
+                if invalid_cols:  # Ensure there are columns available to pop
+                    random_column = random.choice(invalid_cols)  # Pick a column from invalid_cols
+                    invalid_cols.remove(random_column)  # Remove the picked column from invalid_cols
+                else:
+                    continue  # If no columns are in invalid_cols, try again
+
+            board = two_dim_to_one_dim(board) # for input to check_move()
+            if (check_move(board, turn, random_column, random_pop) == True):
+                print("COMPUTER DOES RANDOM MOVE")
+                return (random_column, random_pop) # returns col, pop (Boolean)
          
                 
     
@@ -2134,15 +2187,15 @@ def menu():
 
 
     # POP Leads to opponent winning (SHOULD WORK FOR EASY, MEDIUM, HARD) #
-    board = [
-        [0,0,0,0,0,0,0],
-        [0,0,0,0,0,0,0],
-        [0,0,0,0,0,0,0],
-        [0,0,0,0,0,0,0],
-        [0,0,0,0,0,0,0],
-        [0,0,0,2,0,0,0],
-        [0,0,2,1,2,2,0]
-    ]
+    # board = [
+    #     [0,0,0,0,0,0,0],
+    #     [0,0,0,0,0,0,0],
+    #     [0,0,0,0,0,0,0],
+    #     [0,0,0,0,0,0,0],
+    #     [0,0,0,0,0,0,0],
+    #     [0,0,0,2,0,0,0],
+    #     [0,0,2,1,2,2,0]
+    # ]
 
     # board = [
     #     [0,0,0,0,0,0,0],
@@ -2196,6 +2249,50 @@ def menu():
     #     [2,2,1,2,0,0,0],
     #     [1,1,2,2,0,0,0]
     # ]
+
+
+
+    #### ________________ INTERESTING TEST CASES ________________ ####
+
+    # # Board glitch (SHOULD WORK FOR EASY, MEDIUM, HARD) #
+    # board = [
+    #     [0, 1, 2, 2, 1, 1, 2],
+    #     [1, 1, 2, 2, 2, 1, 1],
+    #     [2, 1, 2, 1, 1, 2, 1],
+    #     [2, 2, 1, 1, 2, 1, 1],
+    #     [1, 1, 2, 2, 2, 1, 2],
+    #     [2, 1, 0, 1, 1, 1, 2]
+    # ]
+
+    # # check if bot will add to empty column (SHOULD WORK FOR EASY, MEDIUM, HARD) #
+    # board = [
+    #     [0, 0, 2, 2, 1, 1, 2],
+    #     [1, 1, 2, 2, 2, 1, 1],
+    #     [2, 1, 2, 1, 1, 2, 1],
+    #     [2, 2, 1, 1, 2, 1, 1],
+    #     [1, 1, 2, 2, 2, 1, 2],
+    #     [2, 1, 3, 1, 1, 1, 2]
+    # ]
+
+    # # check if bot will pop column when board is full (SHOULD WORK FOR EASY, MEDIUM, HARD) #
+    board = [
+        [0, 0, 0, 2, 1, 1, 2],
+        [1, 1, 2, 2, 2, 1, 1],
+        [2, 1, 2, 1, 1, 2, 1],
+        [2, 2, 1, 1, 2, 1, 1],
+        [1, 1, 2, 2, 2, 1, 2],
+        [2, 1, 3, 1, 1, 1, 2]
+    ]
+
+    # board = [
+    #     [2, 2, 1, 1, 0, 0, 0],
+    #     [1, 1, 2, 1, 0, 0, 0],
+    #     [1, 0, 1, 0, 0, 0, 0],
+    #     [2, 0, 0, 0, 0, 0, 0],
+    #     [0, 0, 0, 0, 0, 0, 0],
+    #     [0, 0, 0, 0, 0, 0, 0]
+    # ]
+
     ##############################
 
     # board = []
@@ -2363,7 +2460,7 @@ def menu():
                         break
                 
                 else:
-                    print("No Disc To Be Popped, Please Try Another Column!")
+                    # print("No Disc To Be Popped, Please Try Another Column!")
                     continue
                     
 
@@ -2444,7 +2541,7 @@ def menu():
                             break
 
                         else:
-                            print("No Disc To Be Popped, Please Try Another Column!")
+                            # print("No Disc To Be Popped, Please Try Another Column!")
                             continue
                     
                     elif (you_player == 2):
@@ -2477,16 +2574,21 @@ def menu():
                             break
 
                         else:
-                            print("No Disc To Be Popped, Please Try Another Column!")
+                            # print("No Disc To Be Popped, Please Try Another Column!")
                             continue
                 
                 machine_turn = True
 
             else:
                 if (you_player == 1):
+                    
+                    computer_move_found = 0
+                    while (not computer_move_found):
+                        computer_selected_col, computer_pop = computer_move(board, 2, get_computer_difficulty)
+                        if check_move(board, 2, computer_selected_col, computer_pop) == True:
+                            computer_move_found = 1
 
-                    computer_selected_col, computer_pop = computer_move(board, 2, get_computer_difficulty)
-                    print("computer_selected_col", computer_selected_col, "computer_pop", computer_pop)
+                    print("computer_selected_col:", computer_selected_col, "computer_pop:", computer_pop)
                     board = apply_move(board, 2, computer_selected_col, computer_pop)
 
                     # check if Computer won #
@@ -2511,9 +2613,14 @@ def menu():
                     machine_turn = False
 
                 else: # human is PLAYER 2
+                    
+                    computer_move_found = 0
+                    while (not computer_move_found):
+                        computer_selected_col, computer_pop = computer_move(board, 1, get_computer_difficulty)
+                        if check_move(board, 2, computer_selected_col, computer_pop) == True:
+                            computer_move_found = 1
 
-                    computer_selected_col, computer_pop = computer_move(board, 1, get_computer_difficulty)
-                    print("computer_selected_col", computer_selected_col, "computer_pop", computer_pop)
+                    print("computer_selected_col:", computer_selected_col, "computer_pop:", computer_pop)
                     board = apply_move(board, 1, computer_selected_col, computer_pop)
 
                     # check if Computer won #
