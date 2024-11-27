@@ -121,20 +121,35 @@ def apply_move(board, turn, col, pop):
 
             return board.copy()
 
-    elif (pop == True):
-        # move every disc above current disc down 1 space
+    # elif (pop == True):
+    #     # move every disc above current disc down 1 space
 
-        bottom_most_row = len(board)-1
-        if (board[bottom_most_row-1][col] == 0):
-            board[bottom_most_row][col] = 0
+    #     bottom_most_row = len(board)-1
+    #     if (board[bottom_most_row-1][col] == 0):
+    #         board[bottom_most_row][col] = 0
         
-        else:
-            for pos in range(len(board)-1, -1, -1):
-                if (board[pos-1][col] == 0):
-                    board[pos][col] = 0
-                    break
-                else:
-                    board[pos][col] = board[pos-1][col]
+    #     else:
+    #         for pos in range(len(board)-1, -1, -1):
+    #             if (board[pos-1][col] == 0):
+    #                 board[pos][col] = 0
+    #                 break
+    #             else:
+    #                 board[pos][col] = board[pos-1][col]
+
+    elif (pop == True):
+        # move every disc above the bottom-most disc down 1 space
+        bottom_most_row = len(board) - 1
+        
+        # Shift all discs down, keeping the top-most as 0
+        for pos in range(bottom_most_row, 0, -1):
+            if (board[pos][col] == 0):
+                break
+            board[pos][col] = board[pos-1][col]
+
+            # Top-most row is non-zero
+            if (pos-1) == 0:
+                board[pos-1][col] = 0  # Set the top-most row to 0
+            
 
         board = two_dim_to_one_dim(board) # board has to be 1D as input
         display_board(board)
@@ -276,6 +291,9 @@ def computer_move(board, turn, level):
 
         random_pop_list = [True, False]
         while True:
+
+            print("Computer -- Current Column Search Space:", invalid_cols)
+
             if (len(board) > num_rows_2d_list): # if board is in 1D
                 board = one_dim_to_two_dim(board) # change board to 2D for len(board[0])-1 to work
 
@@ -1037,6 +1055,9 @@ def computer_move(board, turn, level):
 
         random_pop_list = [True, False]
         while True:
+
+            print("Computer -- Current Column Search Space:", invalid_cols)
+
             if (len(board) > num_rows_2d_list): # if board is in 1D
                 board = one_dim_to_two_dim(board) # change board to 2D for len(board[0])-1 to work
 
@@ -2044,6 +2065,9 @@ def computer_move(board, turn, level):
         ## END OF CHECK USER ##
         random_pop_list = [True, False]
         while True:
+
+            print("Computer -- Current Column Search Space:", invalid_cols)
+
             if (len(board) > num_rows_2d_list): # if board is in 1D
                 board = one_dim_to_two_dim(board) # change board to 2D for len(board[0])-1 to work
 
@@ -2265,24 +2289,24 @@ def menu():
     # ]
 
     # # check if bot will add to empty column (SHOULD WORK FOR EASY, MEDIUM, HARD) #
+    board = [
+        [0, 0, 2, 3, 1, 1, 2],
+        [1, 1, 3, 2, 2, 1, 1],
+        [2, 1, 2, 3, 1, 2, 3],
+        [2, 3, 3, 1, 3, 1, 1],
+        [1, 1, 3, 3, 2, 1, 2],
+        [2, 1, 3, 1, 1, 1, 3]
+    ]
+
+    # # check if bot will pop column when board is full (SHOULD WORK FOR EASY, MEDIUM, HARD) #
     # board = [
-    #     [0, 0, 2, 2, 1, 1, 2],
+    #     [0, 0, 0, 2, 1, 1, 2],
     #     [1, 1, 2, 2, 2, 1, 1],
     #     [2, 1, 2, 1, 1, 2, 1],
     #     [2, 2, 1, 1, 2, 1, 1],
     #     [1, 1, 2, 2, 2, 1, 2],
     #     [2, 1, 3, 1, 1, 1, 2]
     # ]
-
-    # # check if bot will pop column when board is full (SHOULD WORK FOR EASY, MEDIUM, HARD) #
-    board = [
-        [0, 0, 0, 2, 1, 1, 2],
-        [1, 1, 2, 2, 2, 1, 1],
-        [2, 1, 2, 1, 1, 2, 1],
-        [2, 2, 1, 1, 2, 1, 1],
-        [1, 1, 2, 2, 2, 1, 2],
-        [2, 1, 3, 1, 1, 1, 2]
-    ]
 
     # board = [
     #     [2, 2, 1, 1, 0, 0, 0],
