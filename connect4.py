@@ -1267,15 +1267,21 @@ def find_block_user_win_strategies(board, get_way_of_user, way_of_user):
 
 
 def find_computer_random_move(board, turn):
+
+    # DEBUG #
+    print("BOARD IN FIND_COMP_RANDOM_MOVE():", board)
+
     random_pop_list = [True, False]
     while True:
 
         print("Computer -- Current FULL Columns:", invalid_cols) # invalid_cols is defined globally
-        # num_rows_initial = len(board)
 
+        # num_rows_initial = len(board)
+        # # print("computer_move() DEBUG:", board)
         # if (num_rows_initial > len(one_dim_to_two_dim(board))): # if board is in 1D
+        #     # print("CONNNVVEERRTTING")
         #     board = one_dim_to_two_dim(board) # change board to 2D for len(board[0])-1 to work
-        # print("find_computer_random_move() DEBUG:", board)
+
 
         random_column = random.randint(0, len(board[0])-1)
         random_pop = random_pop_list[random.randint(0,1)]
@@ -1287,8 +1293,8 @@ def find_computer_random_move(board, turn):
             else:
                 continue  # If no columns are in invalid_cols, try again
 
-        board = two_dim_to_one_dim(board) # for input to check_move()
-        if (check_move(board, turn, random_column, random_pop) == True):
+        copy_board = two_dim_to_one_dim(board) # for input to check_move()
+        if (check_move(copy_board, turn, random_column, random_pop) == True):
             print("COMPUTER DOES RANDOM MOVE")
             return random_column, random_pop # returns col, pop (Boolean)
 
@@ -1394,6 +1400,7 @@ def computer_move(board, turn, level):
         # print("CONNNVVEERRTTING")
         board = one_dim_to_two_dim(board) # change board to 2D for len(board[0])-1 to work
 
+    print("BOARD IN COMPUTER_MOVE():", board)
 
     print("Computer is making a move...")
     time.sleep(1.3)
@@ -1401,18 +1408,18 @@ def computer_move(board, turn, level):
     
     # print("board's length:", len(board))
 
+    if (level == 1): # random moves
+        random_column, random_pop = find_computer_random_move(board, turn) # returns col, pop (Boolean)
+        return (random_column, random_pop)
+    
+
     if (level == 2 or level == 3):
 
         global combined_mat # * Global for update_computer() and update_user()
         combined_mat = [[[0,0,0,0] for i in range(len(board[0]))] for j in range(len(board))] # score matrix [0,0,0,0] for score per square for horizontal, vertical, main diag, reflected diag #
-
-
-    if (level == 1): # random moves
-        random_column, random_pop = find_computer_random_move(board, turn) # returns col, pop (Boolean)
-        return (random_column, random_pop)
             
     
-    elif (level == 2): # Medium
+    if (level == 2): # Medium
 
 
         computer_disc_locs = []
@@ -1840,14 +1847,15 @@ def menu():
 
     #### ________________ INTERESTING TEST CASES ________________ ####
 
-    # # Board glitch (SHOULD WORK FOR EASY, MEDIUM, HARD) #
+    # # (SHOULD WORK FOR EASY, MEDIUM, HARD) # # ERROR --> *** THIS TEST IS NOT CORRECT: IGNORE THIS TEST *** ## Expected output --> should have been (2,False) or (0,True) or (1,True) or (4,True) or (5,True)
     # board = [
-    #     [0, 1, 2, 2, 1, 1, 2],
-    #     [1, 1, 2, 2, 2, 1, 1],
-    #     [2, 1, 2, 1, 1, 2, 1],
-    #     [2, 2, 1, 1, 2, 1, 1],
-    #     [1, 1, 2, 2, 2, 1, 2],
-    #     [2, 1, 0, 1, 1, 1, 2]
+    #     [1, 0, 0, 2, 1, 1, 2],
+    #     [1, 1, 2, 2, 1, 1, 2],
+    #     [2, 2, 1, 1, 2, 2, 1],
+    #     [2, 2, 1, 1, 2, 2, 1],
+    #     [1, 1, 2, 2, 1, 1, 2],
+    #     [1, 1, 2, 2, 1, 1, 2],
+    #     [1, 1, 2, 2, 1, 1, 2]
     # ]
 
     # # check if bot will add to empty column (SHOULD WORK FOR EASY, MEDIUM, HARD) #
@@ -1890,6 +1898,7 @@ def menu():
     #     [0, 1, 2, 2, 1, 1, 0]
     # ]
 
+    # Computer (1) pops to win #
     board = [
         [0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0],
@@ -1900,6 +1909,7 @@ def menu():
         [2, 2, 1, 1, 0, 0, 0]
     ]
 
+    # # Computer pop to prevent user from popping to win ##
     # board = [
     #     [0, 0, 0, 0, 0, 0, 0],
     #     [0, 0, 0, 0, 0, 0, 0],
@@ -1967,8 +1977,8 @@ def menu():
         print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
         print()
 
-    while (not(6 <= getboardheight <= 10)):
-        getboardheight = int(input("Select Number of Rows (Choose a number from 6-10)").strip())
+    # while (not(6 <= getboardheight <= 10)):
+    #     getboardheight = int(input("Select Number of Rows (Choose a number from 6-10)").strip())
 
     while (not(opponent_type_selected)):
         get_opponent_type =  input("Play Against A Computer? (y/n)").strip()
@@ -1985,7 +1995,8 @@ def menu():
 
     start_game = True
 
-    boardheight = getboardheight
+    # boardheight = getboardheight
+    boardheight = 7
     boardwidth = 7
 
 
