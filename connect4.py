@@ -365,8 +365,9 @@ def check_computer(board, row_idx, col_idx, check_getWay_computer, check_Way_com
             and (row_idx+1<= len(combined_mat[0])-1) ):
 
             print("++++++++++++++++++++++++++++++++++++")
+            computer_win = True
             computer_high_score, computer_high_score_row_idx, computer_high_score_col_idx = update_computer(row_idx, col_idx)
-            return computer_high_score, computer_high_score_row_idx, computer_high_score_col_idx
+            return computer_win, computer_high_score, computer_high_score_row_idx, computer_high_score_col_idx
         
     
     if (check_getWay_computer == 0 and check_Way_computer == 2):
@@ -391,8 +392,9 @@ def check_computer(board, row_idx, col_idx, check_getWay_computer, check_Way_com
             and (row_idx+1<= len(combined_mat[0])-1) ):
 
             print("++++++++++++++++++++++++++++++++++++")
+            computer_win = True
             computer_high_score, computer_high_score_row_idx, computer_high_score_col_idx = update_computer(row_idx, col_idx)
-            return computer_high_score, computer_high_score_row_idx, computer_high_score_col_idx
+            return computer_win, computer_high_score, computer_high_score_row_idx, computer_high_score_col_idx
 
     ###################################################################################
 
@@ -422,8 +424,9 @@ def check_computer(board, row_idx, col_idx, check_getWay_computer, check_Way_com
             # print("old high score:", computer_high_score)
 
             print("============================")
+            computer_win = True
             computer_high_score, computer_high_score_row_idx, computer_high_score_col_idx = update_computer(row_idx, col_idx)
-            return computer_high_score, computer_high_score_row_idx, computer_high_score_col_idx
+            return computer_win, computer_high_score, computer_high_score_row_idx, computer_high_score_col_idx
 
             # print("new high score:", max(combined_mat[row_idx][col_idx]))
             # print("(HIGHEST SCORE COMPUTER) row_idx:", row_idx, "col_idx:", col_idx)
@@ -457,8 +460,9 @@ def check_computer(board, row_idx, col_idx, check_getWay_computer, check_Way_com
                 # print("UPDATE ...")
                 # print("old high score:", computer_high_score)
 
+                computer_win = True
                 computer_high_score, computer_high_score_row_idx, computer_high_score_col_idx = update_computer(row_idx, col_idx)
-                return computer_high_score, computer_high_score_row_idx, computer_high_score_col_idx
+                return computer_win, computer_high_score, computer_high_score_row_idx, computer_high_score_col_idx
 
                 # print("new high score:", max(combined_mat[row_idx][col_idx]))
                 # print("(HIGHEST SCORE COMPUTER) row_idx:", row_idx, "col_idx:", col_idx)
@@ -479,8 +483,9 @@ def check_computer(board, row_idx, col_idx, check_getWay_computer, check_Way_com
                 # print("UPDATE ...")
                 # print("old high score:", computer_high_score)
 
+                computer_win = True
                 computer_high_score, computer_high_score_row_idx, computer_high_score_col_idx = update_computer(row_idx, col_idx)
-                return computer_high_score, computer_high_score_row_idx, computer_high_score_col_idx
+                return computer_win, computer_high_score, computer_high_score_row_idx, computer_high_score_col_idx
 
                 # print("new high score:", max(combined_mat[row_idx][col_idx]))
                 # print("(HIGHEST SCORE COMPUTER) row_idx:", row_idx, "col_idx:", col_idx)
@@ -507,8 +512,9 @@ def check_computer(board, row_idx, col_idx, check_getWay_computer, check_Way_com
                 # print("UPDATE ...")
                 # print("old high score:", computer_high_score)
 
+                computer_win = True
                 computer_high_score, computer_high_score_row_idx, computer_high_score_col_idx = update_computer(row_idx, col_idx)
-                return computer_high_score, computer_high_score_row_idx, computer_high_score_col_idx
+                return computer_win, computer_high_score, computer_high_score_row_idx, computer_high_score_col_idx
 
                 # print("new high score:", max(combined_mat[row_idx][col_idx]))
                 # print("(HIGHEST SCORE COMPUTER) row_idx:", row_idx, "col_idx:", col_idx)
@@ -528,9 +534,10 @@ def check_computer(board, row_idx, col_idx, check_getWay_computer, check_Way_com
                 # print("# COMPUTER: THERE IS NO different colored disc in REFLECTED DIAGONAL")
                 # print("UPDATE ...")
                 # print("old high score:", computer_high_score)
-
+                
+                computer_win = True
                 computer_high_score, computer_high_score_row_idx, computer_high_score_col_idx = update_computer(row_idx, col_idx)
-                return computer_high_score, computer_high_score_row_idx, computer_high_score_col_idx
+                return computer_win, computer_high_score, computer_high_score_row_idx, computer_high_score_col_idx
 
                 # print("new high score:", max(combined_mat[row_idx][col_idx]))
                 # print("(HIGHEST SCORE COMPUTER) row_idx:", row_idx, "col_idx:", col_idx)
@@ -546,66 +553,9 @@ def check_computer(board, row_idx, col_idx, check_getWay_computer, check_Way_com
         1) horizontal manner
         2) vertical manner
 
-        Then afterwards, we will look at the special cases of 1) main diagonal, 2) reflected diagonal,
-        3) non-contiguous horizontal
+        special cases of 1) main diagonal, 2) reflected diagonal, 3) non-contiguous horizontal
+        are done first
     '''
-    # START OF 1 SCORE #
-    if (check_getWay_computer == 0 and check_Way_computer == 1):
-        if ( (col_idx+1 <= len(combined_mat[0])-1) and (max(combined_mat[row_idx][col_idx+1]) == 0) ) or \
-            ( (col_idx-1 >= 0) and (max(combined_mat[row_idx][col_idx-1]) == 0) ): # if there is a different colored disc vertically on top, dont update
-            # print("# COMPUTER: THERE IS NO different colored disc horizontally on right (OR)")
-            # print("# COMPUTER: THERE IS NO different colored disc horizontally on left ..")
-            # print("COMPUTER: UPDATE ...")
-            # print("COMPUTER: old high score:", computer_high_score)
-            
-            computer_high_score, computer_high_score_row_idx, computer_high_score_col_idx = update_computer(row_idx, col_idx)
-            return computer_high_score, computer_high_score_row_idx, computer_high_score_col_idx
-        
-            # print("COMPUTER: new high score:", max(combined_mat[row_idx][col_idx]))
-            # print("(HIGHEST SCORE COMPUTER) row_idx:", row_idx, "col_idx:", col_idx)
-            # print()
-    elif (check_getWay_computer == 1 and check_Way_computer == 1):
-        if (row_idx-1 >= 0) and (max(combined_mat[row_idx-1][col_idx]) == 0):
-            # print("# COMPUTER: THERE IS NO different colored disc vertically on top")
-            # print("COMPUTER: UPDATE ...")
-            # print("COMPUTER: old high score:", computer_high_score)
-            
-            computer_high_score, computer_high_score_row_idx, computer_high_score_col_idx = update_computer(row_idx, col_idx)
-            return computer_high_score, computer_high_score_row_idx, computer_high_score_col_idx
-        
-            # print("COMPUTER: new high score:", max(combined_mat[row_idx][col_idx]))
-            # print("(HIGHEST SCORE COMPUTER) row_idx:", row_idx, "col_idx:", col_idx)
-            # print()
-    # END OF 1 SCORE #
-
-    # START OF 2 SCORES #
-    if (check_getWay_computer == 0 and check_Way_computer == 2):
-        if ( (col_idx+1 <= len(combined_mat[0])-1) and (max(combined_mat[row_idx][col_idx+1]) == 0) ) or \
-            ( (col_idx-2 >= 0) and (max(combined_mat[row_idx][col_idx-2]) == 0) ): # if there is a different colored disc vertically on top, dont update
-            # print("# COMPUTER: THERE IS NO different colored disc horizontally on right (OR)")
-            # print("# COMPUTER: THERE IS NO different colored disc horizontally on left ..")
-            # print("COMPUTER: UPDATE ...")
-            # print("COMPUTER: old high score:", computer_high_score)
-            
-            computer_high_score, computer_high_score_row_idx, computer_high_score_col_idx = update_computer(row_idx, col_idx)
-            return computer_high_score, computer_high_score_row_idx, computer_high_score_col_idx
-        
-            # print("COMPUTER: new high score:", max(combined_mat[row_idx][col_idx]))
-            # print("(HIGHEST SCORE COMPUTER) row_idx:", row_idx, "col_idx:", col_idx)
-            # print()
-    elif (check_getWay_computer == 1 and check_Way_computer == 2):
-        if (row_idx-1 >= 0) and (max(combined_mat[row_idx-1][col_idx]) == 0):
-            # print("# COMPUTER: THERE IS NO different colored disc vertically on top")
-            # print("COMPUTER: UPDATE ...")
-            # print("COMPUTER: old high score:", computer_high_score)
-            
-            computer_high_score, computer_high_score_row_idx, computer_high_score_col_idx = update_computer(row_idx, col_idx)
-            return computer_high_score, computer_high_score_row_idx, computer_high_score_col_idx
-        
-            # print("COMPUTER: new high score:", max(combined_mat[row_idx][col_idx]))
-            # print("(HIGHEST SCORE COMPUTER) row_idx:", row_idx, "col_idx:", col_idx)
-            # print()
-    # END OF 2 SCORES #
 
     # START OF 3 SCORES #
     if (check_getWay_computer == 0 and check_Way_computer == 3):
@@ -616,8 +566,9 @@ def check_computer(board, row_idx, col_idx, check_getWay_computer, check_Way_com
             # print("COMPUTER: UPDATE ...")
             # print("COMPUTER: old high score:", computer_high_score)
             
+            computer_win = True
             computer_high_score, computer_high_score_row_idx, computer_high_score_col_idx = update_computer(row_idx, col_idx)
-            return computer_high_score, computer_high_score_row_idx, computer_high_score_col_idx
+            return computer_win, computer_high_score, computer_high_score_row_idx, computer_high_score_col_idx
         
             # print("COMPUTER: new high score:", max(combined_mat[row_idx][col_idx]))
             # print("(HIGHEST SCORE COMPUTER) row_idx:", row_idx, "col_idx:", col_idx)
@@ -628,13 +579,77 @@ def check_computer(board, row_idx, col_idx, check_getWay_computer, check_Way_com
             # print("COMPUTER: UPDATE ...")
             # print("COMPUTER: old high score:", computer_high_score)
             
+            computer_win = True
             computer_high_score, computer_high_score_row_idx, computer_high_score_col_idx = update_computer(row_idx, col_idx)
-            return computer_high_score, computer_high_score_row_idx, computer_high_score_col_idx
+            return computer_win, computer_high_score, computer_high_score_row_idx, computer_high_score_col_idx
         
             # print("COMPUTER: new high score:", max(combined_mat[row_idx][col_idx]))
             # print("(HIGHEST SCORE COMPUTER) row_idx:", row_idx, "col_idx:", col_idx)
             # print()
     # END OF 3 SCORES #
+    
+    # START OF 2 SCORES #
+    if (check_getWay_computer == 0 and check_Way_computer == 2):
+        if ( (col_idx+1 <= len(combined_mat[0])-1) and (max(combined_mat[row_idx][col_idx+1]) == 0) ) or \
+            ( (col_idx-2 >= 0) and (max(combined_mat[row_idx][col_idx-2]) == 0) ): # if there is a different colored disc vertically on top, dont update
+            # print("# COMPUTER: THERE IS NO different colored disc horizontally on right (OR)")
+            # print("# COMPUTER: THERE IS NO different colored disc horizontally on left ..")
+            # print("COMPUTER: UPDATE ...")
+            # print("COMPUTER: old high score:", computer_high_score)
+            
+            computer_win = False
+            computer_high_score, computer_high_score_row_idx, computer_high_score_col_idx = update_computer(row_idx, col_idx)
+            return computer_win, computer_high_score, computer_high_score_row_idx, computer_high_score_col_idx
+        
+            # print("COMPUTER: new high score:", max(combined_mat[row_idx][col_idx]))
+            # print("(HIGHEST SCORE COMPUTER) row_idx:", row_idx, "col_idx:", col_idx)
+            # print()
+    elif (check_getWay_computer == 1 and check_Way_computer == 2):
+        if (row_idx-1 >= 0) and (max(combined_mat[row_idx-1][col_idx]) == 0):
+            # print("# COMPUTER: THERE IS NO different colored disc vertically on top")
+            # print("COMPUTER: UPDATE ...")
+            # print("COMPUTER: old high score:", computer_high_score)
+
+            computer_win = False
+            computer_high_score, computer_high_score_row_idx, computer_high_score_col_idx = update_computer(row_idx, col_idx)
+            return computer_win, computer_high_score, computer_high_score_row_idx, computer_high_score_col_idx
+        
+            # print("COMPUTER: new high score:", max(combined_mat[row_idx][col_idx]))
+            # print("(HIGHEST SCORE COMPUTER) row_idx:", row_idx, "col_idx:", col_idx)
+            # print()
+    # END OF 2 SCORES #
+
+    # START OF 1 SCORE #
+    if (check_getWay_computer == 0 and check_Way_computer == 1):
+        if ( (col_idx+1 <= len(combined_mat[0])-1) and (max(combined_mat[row_idx][col_idx+1]) == 0) ) or \
+            ( (col_idx-1 >= 0) and (max(combined_mat[row_idx][col_idx-1]) == 0) ): # if there is a different colored disc vertically on top, dont update
+            # print("# COMPUTER: THERE IS NO different colored disc horizontally on right (OR)")
+            # print("# COMPUTER: THERE IS NO different colored disc horizontally on left ..")
+            # print("COMPUTER: UPDATE ...")
+            # print("COMPUTER: old high score:", computer_high_score)
+            
+            computer_win = False
+            computer_high_score, computer_high_score_row_idx, computer_high_score_col_idx = update_computer(row_idx, col_idx)
+            return computer_win, computer_high_score, computer_high_score_row_idx, computer_high_score_col_idx
+        
+            # print("COMPUTER: new high score:", max(combined_mat[row_idx][col_idx]))
+            # print("(HIGHEST SCORE COMPUTER) row_idx:", row_idx, "col_idx:", col_idx)
+            # print()
+    elif (check_getWay_computer == 1 and check_Way_computer == 1):
+        if (row_idx-1 >= 0) and (max(combined_mat[row_idx-1][col_idx]) == 0):
+            # print("# COMPUTER: THERE IS NO different colored disc vertically on top")
+            # print("COMPUTER: UPDATE ...")
+            # print("COMPUTER: old high score:", computer_high_score)
+            
+            computer_win = False
+            computer_high_score, computer_high_score_row_idx, computer_high_score_col_idx = update_computer(row_idx, col_idx)
+            return computer_win, computer_high_score, computer_high_score_row_idx, computer_high_score_col_idx
+        
+            # print("COMPUTER: new high score:", max(combined_mat[row_idx][col_idx]))
+            # print("(HIGHEST SCORE COMPUTER) row_idx:", row_idx, "col_idx:", col_idx)
+            # print()
+    # END OF 1 SCORE #
+    
     ## END ##
 
     else:
@@ -1058,43 +1073,9 @@ def find_computer_win_strategies(board, turn, get_way_of_computer, way_of_comput
         1) horizontal manner
         2) vertical manner
 
-        Then afterwards, we will look at the special cases of 1) main diagonal, 2) reflected diagonal,
-        3) non-contiguous horizontal
+        special cases of 1) main diagonal, 2) reflected diagonal, 3) non-contiguous horizontal
+        are done first
     '''
-    # START OF 1 SCORE #
-    if (get_way_of_computer == 0 and way_of_computer == 1):
-        if ( (computer_high_score_col_idx+1 <= len(combined_mat[0])-1) and (max(combined_mat[computer_high_score_row_idx][computer_high_score_col_idx+1]) == 0) ):
-            print("COMPUTER CREATING CHANCES FOR HORIZONTAL WIN")
-            return (computer_high_score_col_idx+1, False)
-        
-        elif ( (computer_high_score_col_idx-1 >= 0) and (max(combined_mat[computer_high_score_row_idx][computer_high_score_col_idx-1]) == 0) ): # if there is a different colored disc vertically on top, dont update
-            print("COMPUTER CREATING CHANCES FOR HORIZONTAL WIN")
-            return (computer_high_score_col_idx-1, False)
-            
-            
-    elif (get_way_of_computer == 1 and way_of_computer == 1):
-        if (computer_high_score_row_idx-1 >= 0) and (max(combined_mat[computer_high_score_row_idx-1][computer_high_score_col_idx]) == 0):
-            print("COMPUTER CREATING CHANCES FOR VERTICAL WIN")
-            return (computer_high_score_col_idx, False)
-    # END OF 1 SCORE #
-
-
-    # START OF 2 SCORES #
-    if (get_way_of_computer == 0 and way_of_computer == 2):
-        if ( (computer_high_score_col_idx+1 <= len(combined_mat[0])-1) and (max(combined_mat[computer_high_score_row_idx][computer_high_score_col_idx+1]) == 0) ):
-            print("COMPUTER CREATING CHANCES FOR HORIZONTAL WIN")
-            return (computer_high_score_col_idx+1, False)
-        
-        elif ( (computer_high_score_col_idx-2 >= 0) and (max(combined_mat[computer_high_score_row_idx][computer_high_score_col_idx-2]) == 0) ): # if there is a different colored disc vertically on top, dont update
-            print("COMPUTER CREATING CHANCES FOR HORIZONTAL WIN")
-            return (computer_high_score_col_idx-2, False)
-
-    elif (get_way_of_computer == 1 and way_of_computer == 2):
-        if (computer_high_score_row_idx-1 >= 0) and (max(combined_mat[computer_high_score_row_idx-1][computer_high_score_col_idx]) == 0):
-            print("COMPUTER CREATING CHANCES FOR VERTICAL WIN")
-            return (computer_high_score_col_idx, False)
-    # END OF 2 SCORES #
-
 
     # START OF 3 SCORES #
     if (get_way_of_computer == 0 and way_of_computer == 3): # if direct horizontal win is available, give computer direct win
@@ -1112,6 +1093,40 @@ def find_computer_win_strategies(board, turn, get_way_of_computer, way_of_comput
             return (computer_high_score_col_idx, False)
     # END OF 3 SCORES #
     ###################################################################################
+
+    # START OF 2 SCORES #
+    if (get_way_of_computer == 0 and way_of_computer == 2):
+        if ( (computer_high_score_col_idx+1 <= len(combined_mat[0])-1) and (max(combined_mat[computer_high_score_row_idx][computer_high_score_col_idx+1]) == 0) ):
+            print("COMPUTER CREATING CHANCES FOR HORIZONTAL WIN")
+            return (computer_high_score_col_idx+1, False)
+        
+        elif ( (computer_high_score_col_idx-2 >= 0) and (max(combined_mat[computer_high_score_row_idx][computer_high_score_col_idx-2]) == 0) ): # if there is a different colored disc vertically on top, dont update
+            print("COMPUTER CREATING CHANCES FOR HORIZONTAL WIN")
+            return (computer_high_score_col_idx-2, False)
+
+    elif (get_way_of_computer == 1 and way_of_computer == 2):
+        if (computer_high_score_row_idx-1 >= 0) and (max(combined_mat[computer_high_score_row_idx-1][computer_high_score_col_idx]) == 0):
+            print("COMPUTER CREATING CHANCES FOR VERTICAL WIN")
+            return (computer_high_score_col_idx, False)
+    # END OF 2 SCORES #
+
+    # START OF 1 SCORE #
+    if (get_way_of_computer == 0 and way_of_computer == 1):
+        if ( (computer_high_score_col_idx+1 <= len(combined_mat[0])-1) and (max(combined_mat[computer_high_score_row_idx][computer_high_score_col_idx+1]) == 0) ):
+            print("COMPUTER CREATING CHANCES FOR HORIZONTAL WIN")
+            return (computer_high_score_col_idx+1, False)
+        
+        elif ( (computer_high_score_col_idx-1 >= 0) and (max(combined_mat[computer_high_score_row_idx][computer_high_score_col_idx-1]) == 0) ): # if there is a different colored disc vertically on top, dont update
+            print("COMPUTER CREATING CHANCES FOR HORIZONTAL WIN")
+            return (computer_high_score_col_idx-1, False)
+            
+            
+    elif (get_way_of_computer == 1 and way_of_computer == 1):
+        if (computer_high_score_row_idx-1 >= 0) and (max(combined_mat[computer_high_score_row_idx-1][computer_high_score_col_idx]) == 0):
+            print("COMPUTER CREATING CHANCES FOR VERTICAL WIN")
+            return (computer_high_score_col_idx, False)
+    # END OF 1 SCORE #
+
     ## END ##    
     
     else:
@@ -1148,7 +1163,7 @@ def find_block_user_win_strategies(board, get_way_of_user, way_of_user):
     
     #######################################################################
     # user 1 disc from main diagonal win #
-    elif (get_way_of_user == 2 and way_of_user == -3):
+    if (get_way_of_user == 2 and way_of_user == -3):
         print("COMPUTER BLOCKING USER FROM DIRECT MAIN DIAGONAL WIN")
         if (user_high_score_row_idx-1 >= 0) and (user_high_score_col_idx-1 >= 0) and \
             (max(combined_mat[user_high_score_row_idx-1][user_high_score_col_idx-1]) == 0):
@@ -1182,7 +1197,7 @@ def find_block_user_win_strategies(board, get_way_of_user, way_of_user):
 
     ############################################################################
     # user 1 disc from reflected diagonal win #
-    elif (get_way_of_user == 3 and way_of_user == -3):
+    if (get_way_of_user == 3 and way_of_user == -3):
         print("COMPUTER BLOCKING USER FROM DIRECT REFLECTED DIAGONAL WIN")
         if (user_high_score_row_idx-1 >= 0) and (user_high_score_col_idx+1 <= len(combined_mat[0])-1) and \
             (max(combined_mat[user_high_score_row_idx-1][user_high_score_col_idx+1]) == 0):
@@ -1222,7 +1237,7 @@ def find_block_user_win_strategies(board, get_way_of_user, way_of_user):
 
             Both of the above scenarios will be a direct win for R
         '''
-    elif (get_way_of_user == 0 and way_of_user == -2):
+    if (get_way_of_user == 0 and way_of_user == -2):
         if (user_high_score_col_idx+1 <= len(combined_mat[0])-1) and (max(combined_mat[user_high_score_row_idx][user_high_score_col_idx+1]) == 0) \
             and (user_high_score_col_idx+2 <= len(combined_mat[0])-1) and (min(combined_mat[user_high_score_row_idx][user_high_score_col_idx+2]) < 0) \
             and (user_high_score_col_idx-1 >= 0) and (min(combined_mat[user_high_score_row_idx][user_high_score_col_idx-1]) < 0):
@@ -1445,8 +1460,10 @@ def computer_move(board, turn, level):
                         check_getWay_computer = combined_mat[row_idx][col_idx].index(check_Way_computer)
 
                         if (check_computer(board, row_idx, col_idx, check_getWay_computer, check_Way_computer)):
-                            computer_high_score, computer_high_score_row_idx, computer_high_score_col_idx = check_computer(board, row_idx, col_idx, check_getWay_computer, check_Way_computer)
+                            computer_win, computer_high_score, computer_high_score_row_idx, computer_high_score_col_idx = check_computer(board, row_idx, col_idx, check_getWay_computer, check_Way_computer)
                             print("computer high score col:", computer_high_score_col_idx)
+                            if computer_win:
+                                break
 
 
                 elif (min(combined_mat[row_idx][col_idx]) < 0): # this is user entry
@@ -1537,8 +1554,10 @@ def computer_move(board, turn, level):
                         check_getWay_computer = combined_mat[row_idx][col_idx].index(check_Way_computer)
 
                         if (check_computer(board, row_idx, col_idx, check_getWay_computer, check_Way_computer)):
-                            computer_high_score, computer_high_score_row_idx, computer_high_score_col_idx = check_computer(board, row_idx, col_idx, check_getWay_computer, check_Way_computer)
+                            computer_win, computer_high_score, computer_high_score_row_idx, computer_high_score_col_idx = check_computer(board, row_idx, col_idx, check_getWay_computer, check_Way_computer)
                             print("computer high score col:", computer_high_score_col_idx)
+                            if computer_win:
+                                break
 
  
                 elif (min(combined_mat[row_idx][col_idx]) < 0): # this is user entry
@@ -1861,15 +1880,35 @@ def menu():
     #     [2, 2, 1, 1, 0, 0, 0]
     # ]
 
+    # board = [
+    #     [0, 0, 0, 0, 0, 0, 0],
+    #     [0, 0, 0, 0, 0, 0, 0],
+    #     [0, 0, 0, 0, 0, 0, 0],
+    #     [0, 0, 0, 0, 0, 0, 0],
+    #     [0, 0, 2, 0, 0, 2, 0],
+    #     [0, 1, 1, 2, 2, 2, 0],
+    #     [0, 1, 2, 2, 1, 1, 0]
+    # ]
+
     board = [
         [0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 2, 0, 0, 2, 0],
-        [0, 1, 1, 2, 2, 2, 0],
-        [0, 1, 2, 2, 1, 1, 0]
+        [2, 0, 0, 0, 0, 0, 0],
+        [1, 0, 1, 0, 0, 0, 0],
+        [1, 1, 2, 1, 0, 0, 0],
+        [2, 2, 1, 1, 0, 0, 0]
     ]
+
+    # board = [
+    #     [0, 0, 0, 0, 0, 0, 0],
+    #     [0, 0, 0, 0, 0, 0, 0],
+    #     [0, 0, 0, 0, 0, 0, 0],
+    #     [2, 0, 0, 0, 0, 0, 0],
+    #     [2, 0, 1, 0, 0, 0, 0],
+    #     [1, 1, 2, 1, 0, 0, 0],
+    #     [2, 2, 1, 1, 0, 0, 0]
+    # ]
 
     ##############################
 
