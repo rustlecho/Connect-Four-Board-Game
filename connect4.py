@@ -1721,7 +1721,7 @@ def menu():
 
     ##############################
 
-    # board = []
+    board = []
 
     current_player = 2 # set to 2 but will be decremented to 1. So PLAYER 1 always first to start
 
@@ -1780,7 +1780,7 @@ def menu():
     #     getboardheight = int(input("Select Number of Rows (Choose a number from 6-10)").strip())
 
     while (not(opponent_type_selected)):
-        get_opponent_type =  input("Play Against A Computer? (y/n)").strip()
+        get_opponent_type =  input("Play Against A Computer? (Y / N)").strip()
         if (get_opponent_type == "y" or get_opponent_type == "Y" or get_opponent_type == "n" or get_opponent_type == "N"):
             opponent_type_selected = True
             if (get_opponent_type == "y" or get_opponent_type == "Y"):
@@ -1788,7 +1788,7 @@ def menu():
 
     # if selected computer player, ask user to select difficulty of computer #
     while (not human_opponent):
-        get_computer_difficulty = int(input("Enter Number For Computer Difficulty (1=Easy / 2=Medium / 3=Hard)").strip())
+        get_computer_difficulty = int(input("Enter Number For Computer Difficulty (1=Easy / 2=Medium / 3=Hard -- DEPRECATED)").strip())
         if (get_computer_difficulty == 1 or get_computer_difficulty == 2 or get_computer_difficulty == 3):
             break
 
@@ -1800,7 +1800,7 @@ def menu():
 
 
     # generate board #
-    for i in range(boardheight):
+    for _ in range(boardheight):
         board.append([0] * boardwidth)
         
     
