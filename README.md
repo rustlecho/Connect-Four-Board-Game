@@ -12,7 +12,7 @@ Play with the computer on a 7x7 board or have a 2-player game with your buddy ! 
 
 
 ## Code Flowchart Visualisation:
-![Alt text](./connect4_code_overview.png)
+![Alt text](./connect4_code_overview_final.png)
 
 
 ## Copyright and Authorship:
