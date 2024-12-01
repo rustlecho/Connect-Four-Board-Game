@@ -11,6 +11,10 @@ This code is implemented in python and is played via the terminal.
 Play with the computer on a 7x7 board or have a 2-player game with your buddy ! :)
 
 
+## Code Flowchart Visualisation:
+![Alt text](./connect4_code_overview.png)
+
+
 ## Copyright and Authorship:
 Author: Russell Cho
 
