@@ -8,7 +8,11 @@ One measure of complexity of the Connect Four game is the number of possible gam
 (description taken from wikipedia: http://en.wikipedia.org/wiki/Connect_Four)
 
 This code is implemented in python and is played via the terminal.
-Play with the computer on a 7x7 board or have a 2-player game with your buddy ! :)
+Play with the computer on a (6-rows x 7-columns) board or have a 2-player game with your buddy ! :)
+
+(7x7) board may be desired for symmetrical reasons for but this version follows the classic 6-rows and 7-columns grid. Players choose a color (Player 1 or Player 2), and take turn dropping their colored chips from the top row down a column. The first player to get four chips in a row (vertical, horizontal, or diagonal) wins!
+
+Source:https://sites.ps.uci.edu/mathceo/meeting-3/connect-4#:~:text=Connect%204%20is%20a%20two,horizontal%2C%20or%20diagonal)%20wins!
 
 
 ## Code Flowchart Visualisation:
