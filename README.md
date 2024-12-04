@@ -12,8 +12,6 @@ Play with the computer on a (6-rows x 7-columns) board or have a 2-player game w
 
 (7x7) board may be desired for symmetrical reasons for but this version follows the classic 6-rows and 7-columns grid. Players choose a color (Player 1 or Player 2), and take turn dropping their colored chips from the top row down a column. The first player to get four chips in a row (vertical, horizontal, or diagonal) wins!
 
-Source:
-https://sites.ps.uci.edu/mathceo/meeting-3/connect-4#:~:text=Connect%204%20is%20a%20two,horizontal%2C%20or%20diagonal)%20wins!
 
 
 ## Code Flowchart Visualisation:
