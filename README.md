@@ -1,3 +1,10 @@
+## Copyright and Authorship:
+Author: Russell
+
+1. This repository, including all its contents, is protected by copyright laws. If you wish to use, modify, or distribute any part of this repository, please contact [Russell] at [rcho002@e.ntu.edu.sg] for more details.
+2. For potential collaboration, please contact the author as well.
+
+
 ## Connect Four Game
 Connect4 or Connect Four is a game in which the players choose a color and then take turns dropping colored tokens into a six-row, seven-column vertically suspended grid. The pieces fall straight down,occupying the lowest available space within the column. The objective of the game is to be the first to form a horizontal, vertical, or diagonal line of four of one's own tokens.
 Players choose a color (Player 1 or Player 2), and take turn dropping their colored chips from the top row down a column. The first player to get four chips in a row (vertical, horizontal, or diagonal) wins!
@@ -16,13 +23,6 @@ Play with the computer on a (6-rows x 7-columns) board or have a 2-player game w
 
 ## Code Flowchart Visualisation:
 ![Alt text](./connect4_code_overview_final.png)
-
-
-## Copyright and Authorship:
-Author: Russell Cho
-
-1. This repository, including all its contents, is protected by copyright laws. If you wish to use, modify, or distribute any part of this repository, please contact [Russell] at [rcho002@e.ntu.edu.sg] for more details.
-2. For potential collaboration, please contact the author as well.
 
 
 ### How to run:
