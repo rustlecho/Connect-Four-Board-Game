@@ -1,8 +1,9 @@
 ## Copyright and Authorship:
 Author: Russell
 
-1. This repository, including all its contents, is protected by copyright laws. If you wish to use, modify, or distribute any part of this repository, please contact [Russell] at [rcho002@e.ntu.edu.sg] for more details.
-2. For potential collaboration, please contact the author as well.
+1. The code in this repository is written as part of an ongoing research with Nanyang Technological University.
+2. This repository, including all its contents, is protected by copyright laws. If you wish to use, modify, or distribute any part of this repository, please contact [Russell] at [rcho002@e.ntu.edu.sg] for more details.
+3. For potential collaboration, please contact the author as well.
 
 
 ## Connect Four Game
