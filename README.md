@@ -20,6 +20,8 @@ One measure of complexity of the Connect Four game is the number of possible gam
 
 (description taken from wikipedia: http://en.wikipedia.org/wiki/Connect_Four)
 
+
+## Game Overview and Instructions
 This code is implemented in python and is played via the terminal.
 Play with the computer on a (6-rows x 7-columns) board or have a 2-player game with your buddy ! :)
 
