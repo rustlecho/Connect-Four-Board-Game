@@ -32,7 +32,7 @@ Play with the computer on a (6-rows x 7-columns) board or have a 2-player game w
 ![Alt text](./connect4_code_overview_final.png)
 
 
-### How to run:
+## How to run:
 ```
 python connect4.py
 ```
