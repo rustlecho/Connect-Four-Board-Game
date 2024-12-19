@@ -1,4 +1,4 @@
-## Copyright and Authorship:
+## Copyright and Authorship:fit bra
 Author: Russell
 
 1. The code in this repository is written as part of an ongoing research with Nanyang Technological University.
@@ -6,9 +6,10 @@ Author: Russell
 3. For potential collaboration, please contact the author as well.
 
 
-## Connect Four Game
+## Connect Four Game (Pop-Your-Chip) -- *Modified/Special Version of Connect Four*
 Connect4 or Connect Four is a game in which the players choose a color and then take turns dropping colored tokens into a six-row, seven-column vertically suspended grid. The pieces fall straight down,occupying the lowest available space within the column. The objective of the game is to be the first to form a horizontal, vertical, or diagonal line of four of one's own tokens.
-Players choose a color (Player 1 or Player 2), and take turn dropping their colored chips from the top row down a column. The first player to get four chips in a row (vertical, horizontal, or diagonal) wins!
+
+Players choose a color (Player 1 or Player 2), and take turn dropping their colored chips from the top row down a column. In this "Pop-Your Chip" *Modified/Special Version* of Connect4, Players are able to pop their own chips out from the bottom of the board. This causes the chips above to all fall down by one position producing a new arrangement of chips on the board. Which in consequence, can act as a way to modify the strategies each player can use to win the game either from an offensive or defensive perspective! The first player to get four chips in a row (vertical, horizontal, or diagonal) wins!
 
 Connect Four is a two-player game with perfect information for both sides, meaning that nothing is hidden from anyone. Connect Four also belongs to the classification of an adversarial, zero-sum game, since a player's advantage is an opponent's disadvantage.
 
