@@ -12,6 +12,8 @@ Connect4 or Connect Four is a game in which the players choose a color and then 
 
 Players choose a color (Player 1 or Player 2), and take turn dropping their colored chips from the top row down a column. In this "Pop-Your Chip" *Modified/Special Version* of Connect4, Players are able to pop their own chips out from the bottom of the board. This causes the chips above to all fall down by one position producing a new arrangement of chips on the board. Which in consequence, can act as a way to modify the strategies each player can use to win the game either from an offensive or defensive perspective! The first player to get four chips in a row (vertical, horizontal, or diagonal) wins!
 
+
+## Economics Perspective and Computational Complexity
 Connect Four is a two-player game with perfect information for both sides, meaning that nothing is hidden from anyone. Connect Four also belongs to the classification of an adversarial, zero-sum game, since a player's advantage is an opponent's disadvantage.
 
 One measure of complexity of the Connect Four game is the number of possible games board positions. For classic Connect Four played on a 7-column-wide, 6-row-high grid, there are 4,531,985,219,092 (about 4.5 trillion) positions for all game boards populated with 0 to 42 pieces. Connect Four is a solved game. The first player can always win by playing the right moves.
